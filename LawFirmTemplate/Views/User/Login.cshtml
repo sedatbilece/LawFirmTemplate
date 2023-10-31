@@ -1,22 +1,49 @@
 ﻿@using LawFirmTemplate.Models.User;
 @model UserIndexViewModel
 
+@{
+    Layout = null;
+}
+<link href="~/admin-panel/assets/css/bootstrap.css" rel="stylesheet" />
+
+<link href="~/admin-panel/assets/css/font-awesome.css" rel="stylesheet" />
+
+<link href="~/admin-panel/assets/css/custom.css" rel="stylesheet" />
+
+<style>
+    .StaticHeight{
+       height:200px;
+    }
+</style>
+<div class="StaticHeight"></div>
+<div class="row mt-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form asp-action="Login" asp-controller="User" method="post">
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" asp-for="UserName" class="form-control" />
+                <label class="form-label" asp-for="UserName">UserName</label>
 
 
-<form asp-action="Login" asp-controller="User" method="post">
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" asp-for="Password" class="form-control" />
+                    <label class="form-label" asp-for="Password">Password</label>
+                </div>
 
-    <table>
-        <tr>
-            <td>UserName : </td>
-            <td><input type="text" asp-for="UserName" /></td>
-        </tr>
-        <tr>
-            <td>Password : </td>
-            <td><input type="text" asp-for="Password" /></td>
-        </tr>
-        <tr>
-            <td>  </td>
-            <td><button type="submit">Login</button></td>
-        </tr>
-    </table>
-</form>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+
+
+   
+
+  
