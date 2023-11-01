@@ -21,6 +21,8 @@ namespace LawFirmTemplate.Data.Entities
         public string Social1 { get; set; }
         public string Social2 { get; set; }
         public string Social3 { get; set; }
-        
+
+        public int Order { get; set; }
+
     }
 }

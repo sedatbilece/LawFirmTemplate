@@ -2,40 +2,41 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @using LawFirmTemplate.Data.Entities;
-@model List<ClientSays>
+@model List<PracticeArea>
 
 
-<a asp-action="AddClientSays" class="btn btn-primary"> Yorum Ekle</a>
+<a asp-action="AddPracticeArea" class="btn btn-primary"> Alan Ekle</a>
 <p></p>
 
 <table class="table table-bordered">
     <thead>
         <tr>
-            
+
             <th scope="col">Order</th>
-            <th scope="col">Ad</th>
             <th scope="col">Başlık</th>
             <th scope="col">Açıklama</th>
             <th scope="col"></th>
             <th scope="col">Resim</th>
+
+
         </tr>
     </thead>
     <tbody>
 
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <tr>
 
-                
+
                 <td>@item.Order</td>
-                <td><a asp-action="EditClientSays" asp-route-Id="@item.Id">@item.Name</a></td>
-                <td>@item.Title</td>
+                <td><a asp-action="EditPracticeArea" asp-route-Id="@item.Id">@item.Title</a></td>
                 <td>@item.Description</td>
-                <td><a asp-action="DeleteClientSays" asp-route-Id="@item.Id" class="btn btn-danger">Sil</a></td>
+                <td><a asp-action="DeletePracticeArea" asp-route-Id="@item.Id" class="btn btn-danger">Sil</a></td>
                 <td> <img class="ImageSize" src="@item.ImageUrl" style="max-height: 100px; width: auto;"></td>
             </tr>
         }
-        
+
 
     </tbody>
 </table>
+

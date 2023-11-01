@@ -2,8 +2,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @using LawFirmTemplate.Data.Entities;
-@model ClientSays
-<h1>Add Client Says</h1>
+@model PracticeArea
+<h1>Add Practice Area</h1>
 
 <style>
     .ImageSize {
@@ -13,12 +13,8 @@
 </style>
 
 
-<form asp-action="AddClientSays" asp-controller="Admin" method="post" enctype="multipart/form-data">
+<form asp-action="AddPracticeArea" asp-controller="Admin" method="post" enctype="multipart/form-data">
     <input asp-for="Id" value="@Model.Id" hidden />
-    <div class="form-group">
-        <label for="Name">Firma Adı</label>
-        <input type="text" class="form-control" id="Name" placeholder="" asp-for="Name" value="@Model.Name">
-    </div>
 
     <div class="form-group">
         <label for="Description">Başlık</label>

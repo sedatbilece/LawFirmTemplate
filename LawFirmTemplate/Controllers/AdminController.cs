@@ -60,7 +60,7 @@ namespace LawFirmTemplate.Controllers
                         firm.ImageUrl = imageUrl;
                     }
 
-                TempData["Info"] = "Bilgiler Güncellendi.";
+
                 _context.Firms.Update(firm);
                     await _context.SaveChangesAsync();
 
@@ -87,7 +87,6 @@ namespace LawFirmTemplate.Controllers
                 _context.Firms.Update(firm);
                 await _context.SaveChangesAsync();
             }
-            TempData["Info"] = "Resim Kaldırıldı.";
             return RedirectToAction("EditFirm");
          }
 
@@ -99,7 +98,7 @@ namespace LawFirmTemplate.Controllers
 
         public async Task<IActionResult> ListClientSays()
         {
-            var clientSays = await _context.ClientSays.ToListAsync();
+            var clientSays = await _context.ClientSays.OrderBy(x=>x.Order).ToListAsync();
 
             return View(clientSays);
         }
@@ -118,6 +117,7 @@ namespace LawFirmTemplate.Controllers
                 client.Name = model.Name;
                 client.Title = model.Title;
                 client.Description = model.Description;
+                client.Order = model.Order;
                 
                 string imageUrl = await SaveImageAsync(ImageFile, client.ImageUrl);
 
@@ -146,13 +146,149 @@ namespace LawFirmTemplate.Controllers
                 DeleteItemsImage(client.ImageUrl);
                 _context.ClientSays.Remove(client);
                 await _context.SaveChangesAsync();
-                TempData["Info"] = "Müşteri Yorumu Silindi";
                 return RedirectToAction("ListClientSays");
             }
 
             return RedirectToAction("ListClientSays");
         }
 
+
+        public async Task<IActionResult> EditClientSays(int Id)
+        {
+            var client = await _context.ClientSays.FindAsync(Id);
+            if(client != null)
+            {
+                return View(client);
+            }
+            return RedirectToAction("Index");
+           
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditClientSays(ClientSays model, IFormFile ImageFile)
+        {
+
+
+            var client = await _context.ClientSays.FindAsync(model.Id);
+
+            if (client != null)
+            {
+                client.Name = model.Name;
+                client.Title = model.Title;
+                client.Description = model.Description;
+                client.Order = model.Order;
+               
+                string imageUrl = await SaveImageAsync(ImageFile, client.ImageUrl);
+
+                if (imageUrl != null)
+                {
+                    client.ImageUrl = imageUrl;
+                }
+                _context.ClientSays.Update(client);
+                await _context.SaveChangesAsync();
+
+            }
+            return RedirectToAction("ListClientSays");
+
+        }
+
+        #endregion
+
+        #region PracticeArea
+
+        public async Task<IActionResult> ListPracticeArea()
+        {
+            var practiceAreas = await _context.PracticeAreas.OrderBy(x => x.Order).ToListAsync();
+
+            return View(practiceAreas);
+        }
+
+
+        public async Task<IActionResult> AddPracticeArea()
+        {
+
+            return View(new PracticeArea() { });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPracticeArea(PracticeArea model, IFormFile ImageFile)
+        {
+            var practiceArea = new PracticeArea();
+
+
+            practiceArea.Title = model.Title;
+            practiceArea.Description = model.Description;
+            practiceArea.Order = model.Order;
+
+            string imageUrl = await SaveImageAsync(ImageFile, practiceArea.ImageUrl);
+
+            if (imageUrl != null)
+            {
+                practiceArea.ImageUrl = imageUrl;
+            }
+            else
+            {
+                practiceArea.ImageUrl = "";
+            }
+
+            _context.PracticeAreas.Add(practiceArea);
+            await _context.SaveChangesAsync();
+
+
+            return RedirectToAction("ListPracticeArea");
+        }
+
+        public async Task<IActionResult> EditPracticeArea(int Id)
+        {
+            var practice = await _context.PracticeAreas.FindAsync(Id);
+            if (practice != null)
+            {
+                return View(practice);
+            }
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditPracticeArea(PracticeArea model, IFormFile ImageFile)
+        {
+
+
+            var practiceArea = await _context.PracticeAreas.FindAsync(model.Id);
+
+            if (practiceArea != null)
+            {
+                practiceArea.Title = model.Title;
+                practiceArea.Description = model.Description;
+                practiceArea.Order = model.Order;
+
+                string imageUrl = await SaveImageAsync(ImageFile, practiceArea.ImageUrl);
+
+                if (imageUrl != null)
+                {
+                    practiceArea.ImageUrl = imageUrl;
+                }
+                _context.PracticeAreas.Update(practiceArea);
+                await _context.SaveChangesAsync();
+
+            }
+            return RedirectToAction("ListPracticeArea");
+
+        }
+
+
+        public async Task<IActionResult> DeletePracticeArea(int Id)
+        {
+            var practiceArea = await _context.PracticeAreas.FindAsync(Id);
+
+            if (practiceArea != null)
+            {
+                DeleteItemsImage(practiceArea.ImageUrl);
+                _context.PracticeAreas.Remove(practiceArea);
+                await _context.SaveChangesAsync();     
+            }
+            return RedirectToAction("ListPracticeArea");
+        }
         #endregion
 
 

@@ -51,7 +51,8 @@ using (var scope = app.Services.CreateScope())
             Mail = "initMail",
             Social1 = "initSocial1",
             Social2 = "initSocial2",
-            Social3 = "initSocial3"
+            Social3 = "initSocial3",
+            Order =1
         };
         context.Users.Add(newUser);
         context.SaveChanges();
