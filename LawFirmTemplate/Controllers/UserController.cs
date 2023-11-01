@@ -28,7 +28,7 @@ namespace LawFirmTemplate.Controllers
         {
             var user = _context.Users.FirstOrDefault(x=>x.Password == model.Password && x.UserName==model.UserName);
 
-            if (user != null)
+            if (user != null && user.RoleType==Data.Enums.RoleType.Admin)
             {
                 var claims = new List<Claim>
                 {
