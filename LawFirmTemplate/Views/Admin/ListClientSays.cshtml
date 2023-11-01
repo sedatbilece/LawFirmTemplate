@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using LawFirmTemplate.Data.Entities;
+@model List<ClientSays>
+
+
+@if (TempData["Info"] != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+
+        @TempData["Info"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+
+
+<a asp-action="AddClientSays"> Yorum Ekle</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            
+            <th scope="col">Ad</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Açıklama</th>
+            <th scope="col"></th>
+            <th scope="col">Resim</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+
+                
+                <td>@item.Name</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td><a asp-action="DeleteClientSays" asp-route-Id="@item.Id" class="btn btn-danger">Sil</a></td>
+                <td> <img class="ImageSize" src="@item.ImageUrl" style="max-height: 100px; width: auto;"></td>
+            </tr>
+        }
+        
+
+    </tbody>
+</table>
