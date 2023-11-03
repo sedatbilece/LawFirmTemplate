@@ -1,5 +1,6 @@
 ﻿using LawFirmTemplate.Data;
 using LawFirmTemplate.Data.Entities;
+using LawFirmTemplate.Data.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -194,7 +195,7 @@ namespace LawFirmTemplate.Controllers
 
         #endregion
 
-        #region PracticeArea
+        #region PracticeAreas
 
         public async Task<IActionResult> ListPracticeArea()
         {
@@ -291,7 +292,126 @@ namespace LawFirmTemplate.Controllers
         }
         #endregion
 
+        #region Users
 
+        public async Task<IActionResult> ListUsers()
+        {
+            var users = await _context.Users.OrderBy(x => x.Order).Where(x=>x.RoleType==Data.Enums.RoleType.Normal).ToListAsync();
+
+            return View(users);
+        }
+
+        public async Task<IActionResult> AddUser()
+        {
+            return View(new User { });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUser(User model, IFormFile ImageFile)
+        {
+
+            var user = new User();
+
+
+            user.DisplayName = model.DisplayName;
+            user.Title= model.Title;
+            user.PhoneNumber = model.PhoneNumber;
+            user.Mail=model.Mail;
+            user.PracticeArea = model.PracticeArea;
+            user.Social1 = model.Social1;
+            user.Social2 = model.Social2;
+            user.Social3 = model.Social3;
+            user.Title = model.Title;
+            user.Order = model.Order;
+            user.RoleType = RoleType.Normal;
+            user.Status = Status.Active;
+            user.UserName = "";
+            user.Password = "";
+
+            string imageUrl = await SaveImageAsync(ImageFile, user.ImageUrl);
+
+            if (imageUrl != null)
+            {
+                user.ImageUrl = imageUrl;
+            }
+            else
+            {
+                user.ImageUrl = "";
+            }
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+
+            return RedirectToAction("ListUsers");
+
+        }
+
+        public async Task<IActionResult> EditUser(int Id)
+        {
+            var user = await _context.Users.Where(x => x.RoleType != RoleType.Admin && x.Id == Id).FirstOrDefaultAsync();
+            if (user != null)
+            {
+                return View(user);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(User model, IFormFile ImageFile)
+        {
+
+            var user = await _context.Users.Where(x => x.RoleType != RoleType.Admin && x.Id == model.Id).FirstOrDefaultAsync();
+
+            if(user != null)
+            {
+                user.DisplayName = model.DisplayName;
+                user.Title = model.Title;
+                user.PhoneNumber = model.PhoneNumber;
+                user.Mail = model.Mail;
+                user.PracticeArea = model.PracticeArea;
+                user.Social1 = model.Social1;
+                user.Social2 = model.Social2;
+                user.Social3 = model.Social3;
+                user.Title = model.Title;
+                user.Order = model.Order;
+                user.RoleType = RoleType.Normal;
+                user.Status = Status.Active;
+                user.UserName = "";
+                user.Password = "";
+
+                string imageUrl = await SaveImageAsync(ImageFile, user.ImageUrl);
+
+                if (imageUrl != null)
+                {
+                    user.ImageUrl = imageUrl;
+                }
+
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+           
+            return RedirectToAction("ListUsers");
+        }
+
+        public async Task<IActionResult> DeleteUser(int Id)
+        {
+            var user = await _context.Users.Where(x => x.RoleType != RoleType.Admin && x.Id == Id).FirstOrDefaultAsync();
+
+            if (user != null)
+            {
+                DeleteItemsImage(user.ImageUrl);
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("ListUsers");
+        }
+
+        #endregion
+
+        #region Contacts
+
+        #endregion
 
         #region Shared Methods
         private async Task<string> SaveImageAsync(IFormFile imageFile, string oldImageUrl)
