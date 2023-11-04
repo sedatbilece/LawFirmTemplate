@@ -4,6 +4,7 @@ using LawFirmTemplate.Data.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace LawFirmTemplate.Controllers
 {
@@ -42,6 +43,7 @@ namespace LawFirmTemplate.Controllers
                 if (firm != null)
                 {
                     firm.Name = model.Name;
+                    firm.Title = model.Title;
                     firm.Description = model.Description; 
                     firm.PhoneNumber = model.PhoneNumber;
                     firm.Mail = model.Mail;
@@ -60,7 +62,6 @@ namespace LawFirmTemplate.Controllers
                     {
                         firm.ImageUrl = imageUrl;
                     }
-
 
                 _context.Firms.Update(firm);
                     await _context.SaveChangesAsync();
@@ -90,7 +91,6 @@ namespace LawFirmTemplate.Controllers
             }
             return RedirectToAction("EditFirm");
          }
-
 
 
         #endregion
@@ -185,6 +185,11 @@ namespace LawFirmTemplate.Controllers
                 {
                     client.ImageUrl = imageUrl;
                 }
+                string ImagePath = Path.Combine("wwwroot", client.ImageUrl.TrimStart('/'));
+                if (!System.IO.File.Exists(ImagePath))
+                {
+                    client.ImageUrl = "";
+                }
                 _context.ClientSays.Update(client);
                 await _context.SaveChangesAsync();
 
@@ -268,6 +273,11 @@ namespace LawFirmTemplate.Controllers
                 if (imageUrl != null)
                 {
                     practiceArea.ImageUrl = imageUrl;
+                }
+                string ImagePath = Path.Combine("wwwroot", practiceArea.ImageUrl.TrimStart('/'));
+                if (!System.IO.File.Exists(ImagePath))
+                {
+                    practiceArea.ImageUrl = "";
                 }
                 _context.PracticeAreas.Update(practiceArea);
                 await _context.SaveChangesAsync();
@@ -385,6 +395,11 @@ namespace LawFirmTemplate.Controllers
                 if (imageUrl != null)
                 {
                     user.ImageUrl = imageUrl;
+                }
+                string ImagePath = Path.Combine("wwwroot", user.ImageUrl.TrimStart('/'));
+                if (!System.IO.File.Exists(ImagePath))
+                {
+                    user.ImageUrl = "";
                 }
 
                 _context.Users.Update(user);

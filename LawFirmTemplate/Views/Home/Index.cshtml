@@ -86,13 +86,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="#" class="nav-item nav-link active">Home</a>
-                            <a href="#About" class="nav-item nav-link active">About</a>
-                            <a href="#Services" class="nav-item nav-link active">Services</a>
-                            <a href="#Team" class="nav-item nav-link active">Team</a>
-                            <a href="#Testimonial" class="nav-item nav-link active">Testimonial</a>
-                            <a href="#Action" class="nav-item nav-link active">Action</a>
-                            <a href="#Contact" class="nav-item nav-link active">Contact</a>
+                            <a href="#" class="nav-item nav-link active">AnaSayfa</a>
+                            <a href="#Services" class="nav-item nav-link active">Alanlar</a>
+                            <a href="#Team" class="nav-item nav-link active">Takım</a>
+                            <a href="#Testimonial" class="nav-item nav-link active">Müşteri Fikirleri</a>
+                            <a href="#Contact" class="nav-item nav-link active">İletişim</a>
                            
                         </div>
                        @* <a href="" class="btn btn-primary mr-3 d-none d-lg-block">Get A Quote</a>*@
@@ -114,7 +112,7 @@
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 900px;">
                                 <span class="display-2  text-white mb-3 ">@Model.firm.Name</span>
-                                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">@Model.firm.Description</h4>
+                                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">@Model.firm.Title</h4>
                                 
                                 <a class="btn btn-primary py-3 px-5 mt-2" href="#Contact">Soru Sor</a>
                             </div>
@@ -126,21 +124,18 @@
         </div>
     </section>
     <!-- Carousel End -->
-
     <!-- About Start -->
     <section id="About">
         <div class="container-fluid py-5">
             <div class="container py-5">
                 <div class="row">
                     <div class="col-lg-5">
-                        <img class="img-fluid rounded" src="~/template/img/about.jpg" alt="">
+                        <img class="img-fluid rounded" src="~/template/img/feature.jpg" alt="">
                     </div>
                     <div class="col-lg-7 mt-4 mt-lg-0">
-                        <h2 class="position-relative text-center bg-white text-primary rounded p-3 mt-4 mb-4 d-none d-lg-block" style="width: 350px; margin-left: -205px;">25 Years Experience</h2>
-                        <h6 class="text-uppercase">Learn About Us</h6>
-                        <h1 class="mb-4">We Provide Reliable And Effective Legal Services</h1>
-                        <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor</p>
-                        <a href="" class="btn btn-primary mt-2">Learn More</a>
+                        <h2 class="position-relative text-center bg-white text-primary rounded p-3 mt-4 mb-4 d-none d-lg-block" style="width: 350px; margin-left: -205px;">Hakkımızda</h2>
+                        <h1 class="mb-4">@Model.firm.Title</h1>
+                        <p>@Model.firm.Description</p>
                     </div>
                 </div>
             </div>
@@ -153,39 +148,28 @@
     <section id="Services">
         <div class="container-fluid py-5">
             <div class="container py-5">
+                <div class="text-center pb-2">
+
+                    <h1 class="mb-4">Alanlar</h1>
+                </div>
                 <div class="row">
                     
                     <div class="col-lg-12 pt-5 pt-lg-0">
                         <div class="bg-primary rounded" style="height: 200px;"></div>
                         <div class="owl-carousel service-carousel position-relative" style="margin-top: -100px; padding: 0 30px;">
-                            <div class="d-flex flex-column align-items-center text-center bg-white rounded pt-4">
-                                <div class="icon-box bg-secondary text-primary mt-2 mb-4">
-                                    <i class="fa fa-2x fa-landmark"></i>
+
+
+
+                            @foreach(var item in Model.practiceAreas)
+                            {
+                                <div class="d-flex flex-column align-items-center text-center bg-white rounded pt-4">
+                                    <div class="icon-box bg-secondary text-primary mt-2 mb-4">
+                                        <img src="@item.ImageUrl" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+                                    </div>
+                                    <h5 class="mb-4 px-4">@item.Title</h5>
+                                    <p class="m-0">@item.Description</p>
                                 </div>
-                                <h5 class="mb-4 px-4">Civil Law</h5>
-                                <p class="m-0">Takim stet justo elitr sea eirmod vero ipsum. Sed Stet clita sit duo dolor stet at at. Tempor dolor sit ipsum</p>
-                            </div>
-                            <div class="d-flex flex-column align-items-center text-center bg-white rounded pt-4">
-                                <div class="icon-box bg-secondary text-primary mt-2 mb-4">
-                                    <i class="fa fa-2x fa-users"></i>
-                                </div>
-                                <h5 class="mb-4 px-4">Family Law</h5>
-                                <p class="m-0">Takim stet justo elitr sea eirmod vero ipsum. Sed Stet clita sit duo dolor stet at at. Tempor dolor sit ipsum</p>
-                            </div>
-                            <div class="d-flex flex-column align-items-center text-center bg-white rounded pt-4">
-                                <div class="icon-box bg-secondary text-primary mt-2 mb-4">
-                                    <i class="fa fa-2x fa-hand-holding-usd"></i>
-                                </div>
-                                <h5 class="mb-4 px-4">Business Law</h5>
-                                <p class="m-0">Takim stet justo elitr sea eirmod vero ipsum. Sed Stet clita sit duo dolor stet at at. Tempor dolor sit ipsum</p>
-                            </div>
-                            <div class="d-flex flex-column align-items-center text-center bg-white rounded pt-4">
-                                <div class="icon-box bg-secondary text-primary mt-2 mb-4">
-                                    <i class="fa fa-2x fa-gavel"></i>
-                                </div>
-                                <h5 class="mb-4 px-4">Criminal Law</h5>
-                                <p class="m-0">Takim stet justo elitr sea eirmod vero ipsum. Sed Stet clita sit duo dolor stet at at. Tempor dolor sit ipsum</p>
-                            </div>
+                            }   
                         </div>
                     </div>
                 </div>
@@ -201,8 +185,7 @@
         <div class="container-fluid py-5">
             <div class="container py-5">
                 <div class="text-center pb-2">
-                    <h6 class="text-uppercase">Our Attorneys</h6>
-                    <h1 class="mb-4">Meet Our Attorneys</h1>
+                    <h1 class="mb-4">Takım Üyeleri</h1>
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -261,12 +244,17 @@
                                 }
                                 else
                                 {
-                                    @item.Description.Substring(0, 200)
-                                    // İlk 200 karakteri alır
+                                    @item.Description.Substring(0, 200)// İlk 200 karakteri alır
                                 }
                             </div>
                             <div class="d-flex align-items-center pt-3">
-                                <img class="img-fluid rounded-circle" src="@item.ImageUrl" style="width: 80px; height: 80px; object-fit: cover;" alt="">
+                                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                {
+                                    <img class="img-fluid rounded-circle" src="@item.ImageUrl" style="width: 80px; height: 80px; object-fit: cover;" alt="">
+                                }else{
+                                    <img class="img-fluid rounded-circle" src="/images/statics/default-profile.jpg" style="width: 80px; height: 80px; object-fit: cover;" alt="">
+                                }
+                                
                                 <div class="pl-4">
                                     <h5>@item.Name</h5>
                                     <p class="m-0">@item.Title</p>
@@ -294,8 +282,8 @@
                 <div class="bg-action rounded" style="height: 500px;">
                     <div class="row h-100 align-items-center justify-content-center">
                         <div class="col-lg-7 text-center">
-                            <h1 class="text-white mb-4">Let's get started. Call us now for a Free Consultation</h1>
-                            <a class="btn btn-primary py-3 px-5 mt-2" href="#">Call Us Now</a>
+                            <h1 class="text-white mb-4">Ücretsiz Danışmanlık İçin Hemen Bizi Arayın veya Whatsapp'tan yazın.</h1>
+                            <a class="btn btn-primary py-3 px-5 mt-2" href="#">İletişime geç</a>
                         </div>
                     </div>
                 </div>
@@ -310,8 +298,7 @@
         <div class="container-fluid py-5">
             <div class="container py-5">
                 <div class="text-center pb-2">
-                    <h6 class="text-uppercase">Contact Us</h6>
-                    <h1 class="mb-4">Contact For Any Query</h1>
+                    <h1 class="mb-4">Sorularınız İçin İletişime Geçin</h1>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 mb-5 mb-lg-0">

@@ -23,6 +23,7 @@ namespace LawFirmTemplate.Controllers
                 clientSays = _context.ClientSays.OrderBy(x => x.Order).ToList(),
                 teams = _context.Users.OrderBy(x => x.Order).Where(x => x.RoleType == Data.Enums.RoleType.Normal).ToList(),
                 firm = _context.Firms.FirstOrDefault(),
+                practiceAreas = _context.PracticeAreas.ToList(),
             };
             
             return View(model);

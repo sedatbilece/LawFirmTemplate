@@ -62,6 +62,7 @@ using (var scope = app.Services.CreateScope())
 
 var newFirm = new Firm{
     Name = "initName",
+    Title = "initTitle",
     Description = "initDescription",
     PhoneNumber = "initPhoneNumber",
     Mail = "initMail",
