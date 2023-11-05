@@ -3,7 +3,7 @@
 }
 @using LawFirmTemplate.Data.Entities;
 @model Firm
-<h1>Edit Firm</h1>
+
 
 <style>
     .ImageSize{
@@ -12,74 +12,85 @@
     }
 </style>
 
+<div class="row g-3">
 
-<form asp-action="EditFirm" asp-controller="Admin" method="post" enctype="multipart/form-data">
-    <input asp-for="Id" value="@Model.Id" hidden/>
-    <div class="form-group">
-        <label for="Name">Firma Adı</label>
-        <input type="text" class="form-control" id="Name" placeholder="" asp-for="Name" value="@Model.Name">
-    </div>
-    <div class="form-group">
-        <label for="Name">Firma Başlığı</label>
-        <input type="text" class="form-control" id="Title" placeholder="" asp-for="Title" value="@Model.Title">
-    </div>
-    <div class="form-group">
-        <label for="Description">Açıklama</label>
-        <textarea class="form-control" id="Description" rows="10" asp-for="Description">@Model.Description</textarea>
-    </div>
-    <div class="form-group">
-        <label for="PhoneNumber">Telefon Numarası</label>
-        <input type="text" class="form-control" id="PhoneNumber" asp-for="PhoneNumber" value="@Model.PhoneNumber">
-    </div>
-    <div class="form-group">
-        <label for="Mail">Mail</label>
-        <input type="text" class="form-control" id="Mail" asp-for="Mail" value="@Model.Mail">
-    </div>
-   
-    <div class="form-group">
-        <label for="AddressLine1">Adres Satırı 1</label>
-        <input type="text" class="form-control" id="AddressLine1" asp-for="AddressLine1" value="@Model.AddressLine1">
-    </div>
-    <div class="form-group">
-        <label for="AddressLine2">Adres Satırı  2</label>
-        <input type="text" class="form-control" id="AddressLine2" asp-for="AddressLine2" value="@Model.AddressLine2">
-    </div>
-    <div class="form-group">
-        <label for="AddressLine3">Adres Satırı  3</label>
-        <input type="text" class="form-control" id="AddressLine3" asp-for="AddressLine3" value="@Model.AddressLine3">
-    </div>
-    <div class="form-group">
-        <label for="Social1">Sosyal Medya 1</label>
-        <input type="text" class="form-control" id="Social1" asp-for="Social1" value="@Model.Social1">
-    </div>
-    <div class="form-group">
-        <label for="Social2">Sosyal Medya  2</label>
-        <input type="text" class="form-control" id="Social2" asp-for="Social2" value="@Model.Social2">
-    </div>
-    <div class="form-group">
-        <label for="Social3">Sosyal Medya  3</label>
-        <input type="text" class="form-control" id="Social3" asp-for="Social3" value="@Model.Social3">
-    </div>
-    <div class="form-group">
-        <label for="Social4">Sosyal Medya  4</label>
-        <input type="text" class="form-control" id="Social4" asp-for="Social4" value="@Model.Social4">
-    </div>
-    <div class="form-group">
-        <label for="Social5">Sosyal Medya  5</label>
-        <input type="text" class="form-control" id="Social5" asp-for="Social5" value="@Model.Social5">
-    </div>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+        <h1>Firma Bilgilerini Düzenle</h1>
+        <form asp-action="EditFirm" asp-controller="Admin" method="post" enctype="multipart/form-data">
+            <input asp-for="Id" value="@Model.Id" hidden />
+            <div class="form-group">
+                <label for="Name">Firma Adı</label>
+                <input type="text" class="form-control" id="Name" placeholder="" asp-for="Name" value="@Model.Name">
+            </div>
+            <div class="form-group">
+                <label for="Name">Firma Başlığı</label>
+                <input type="text" class="form-control" id="Title" placeholder="" asp-for="Title" value="@Model.Title">
+            </div>
+            <div class="form-group">
+                <label for="Description">Açıklama</label>
+                <textarea class="form-control" id="Description" rows="10" asp-for="Description">@Model.Description</textarea>
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber">Telefon Numarası</label>
+                <input type="text" class="form-control" id="PhoneNumber" asp-for="PhoneNumber" value="@Model.PhoneNumber">
+            </div>
+            <div class="form-group">
+                <label for="Mail">Mail</label>
+                <input type="text" class="form-control" id="Mail" asp-for="Mail" value="@Model.Mail">
+            </div>
 
-    <div class="form-group">
-        <label for="ImageFile">Image Upload</label>
-        <input type="file" class="form-control-file" id="ImageFile" name="ImageFile">
-    </div>
-    <div class="form-group">
-        <label for="ImageFile">Mevcut Resim</label>
-        <img class="ImageSize" src="@Model.ImageUrl" style="max-height: 400px; width: auto; border: 1px solid red;">
+            <div class="form-group">
+                <label for="AddressLine1">Adres Satırı 1</label>
+                <input type="text" class="form-control" id="AddressLine1" asp-for="AddressLine1" value="@Model.AddressLine1">
+            </div>
+            <div class="form-group">
+                <label for="AddressLine2">Adres Satırı  2</label>
+                <input type="text" class="form-control" id="AddressLine2" asp-for="AddressLine2" value="@Model.AddressLine2">
+            </div>
+            <div class="form-group">
+                <label for="AddressLine3">Adres Satırı  3</label>
+                <input type="text" class="form-control" id="AddressLine3" asp-for="AddressLine3" value="@Model.AddressLine3">
+            </div>
+            <div class="form-group">
+                <label for="Social1">Sosyal Medya 1</label>
+                <input type="text" class="form-control" id="Social1" asp-for="Social1" value="@Model.Social1">
+            </div>
+            <div class="form-group">
+                <label for="Social2">Sosyal Medya  2</label>
+                <input type="text" class="form-control" id="Social2" asp-for="Social2" value="@Model.Social2">
+            </div>
+            <div class="form-group">
+                <label for="Social3">Sosyal Medya  3</label>
+                <input type="text" class="form-control" id="Social3" asp-for="Social3" value="@Model.Social3">
+            </div>
+            <div class="form-group">
+                <label for="Social4">Sosyal Medya  4</label>
+                <input type="text" class="form-control" id="Social4" asp-for="Social4" value="@Model.Social4">
+            </div>
+            <div class="form-group">
+                <label for="Social5">Sosyal Medya  5</label>
+                <input type="text" class="form-control" id="Social5" asp-for="Social5" value="@Model.Social5">
+            </div>
 
-        <span><a class="btn btn-outline-danger" asp-action="DeleteFirmImage" asp-route-Id="@Model.Id">Resmi Kaldır</a></span>
-    </div>
+            <div class="form-group">
+                <label for="ImageFile">Image Upload</label>
+                <input type="file" class="form-control-file" id="ImageFile" name="ImageFile">
+            </div>
+            <div class="form-group">
+                <label for="ImageFile">Mevcut Resim</label>
+                <img class="ImageSize" src="@Model.ImageUrl" style="max-height: 400px; width: auto; border: 1px solid red;">
+
+                <span><a class="btn btn-outline-danger" asp-action="DeleteFirmImage" asp-route-Id="@Model.Id">Resmi Kaldır</a></span>
+            </div>
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+</div>
+<div class="col-md-2"></div>
+
+
+</div>
+
