@@ -1,4 +1,5 @@
 ﻿using LawFirmTemplate.Data;
+using LawFirmTemplate.Data.Entities;
 using LawFirmTemplate.Models;
 using LawFirmTemplate.Models.Home;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,28 @@ namespace LawFirmTemplate.Controllers
             };
             
             return View(model);
+        }
+
+
+        [HttpPost]
+        public IActionResult AddQuestion(HomeIndexModel model)
+        {
+
+            var SaveModel = new Contact()
+            {
+                Name = model.QuestionArea.Name,
+                Mail = model.QuestionArea.Mail,
+                Phone = model.QuestionArea.Phone,
+                Subject = model.QuestionArea.Subject,
+                Message = model.QuestionArea.Message,
+                Area = "",
+            };
+
+            _context.Contacts.Add(SaveModel);
+            _context.SaveChanges();
+
+            TempData["Message"] = "Mesajınız Kaydedildi.";
+            return RedirectToAction("Index");
         }
 
        

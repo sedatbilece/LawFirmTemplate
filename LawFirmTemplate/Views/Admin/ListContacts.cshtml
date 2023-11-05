@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using LawFirmTemplate.Data.Entities;
+@model List<Contact>
+
+
+ <h3>Gelen Mesajlar</h3>
+<p></p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+
+            <th scope="col">Tarih</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Konu</th>
+            <th scope="col">Mesaj</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CreatedAt</td>
+                <td>@item.Name</td>
+                <td>@item.Mail</td>
+                <td>@item.Phone</td>
+                <td>@item.Subject</td>
+                <td>@item.Message</td>
+                <td><a asp-action="DeleteContact" asp-route-Id="@item.Id" class="btn btn-danger">Sil</a></td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

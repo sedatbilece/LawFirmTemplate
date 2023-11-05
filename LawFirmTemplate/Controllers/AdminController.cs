@@ -425,7 +425,25 @@ namespace LawFirmTemplate.Controllers
         #endregion
 
         #region Contacts
+        public async Task<IActionResult> ListContacts()
+        {
+            var contacts = await _context.Contacts.OrderByDescending(x => x.CreatedAt).ToListAsync();
 
+            return View(contacts);
+        }
+
+        public async Task<IActionResult> DeleteContact(int Id)
+        {
+            var contact = await _context.Contacts.FindAsync(Id);
+
+            if (contact != null)
+            {
+                _context.Contacts.Remove(contact);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("ListContacts");
+        }
         #endregion
 
         #region Shared Methods
