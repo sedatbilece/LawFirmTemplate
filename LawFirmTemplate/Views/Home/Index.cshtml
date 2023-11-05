@@ -54,7 +54,7 @@
                         </div>
                         <div class="h-100 d-inline-flex align-items-center py-2 px-2">
                             <i class="fa fa-phone-alt text-primary mr-2"></i>
-                            <small>@Model.firm.PhoneNumber</small>
+                            <small id="firm-number">@Model.firm.PhoneNumber</small>
                         </div>
                     </div>
                     <div class="col-lg-5 text-right">
@@ -287,10 +287,6 @@
                         </div>
                     }
 
-
-
-
-
                 </div>
 
             </div>
@@ -307,7 +303,7 @@
                     <div class="row h-100 align-items-center justify-content-center">
                         <div class="col-lg-7 text-center">
                             <h1 class="text-white mb-4">Ücretsiz Danışmanlık İçin Hemen Bizi Arayın veya Whatsapp'tan yazın.</h1>
-                            <a class="btn btn-primary py-3 px-5 mt-2" href="#">İletişime geç</a>
+                            <a class="btn btn-primary py-3 px-5 mt-2" href="#" id="whatsapp-link">İletişime geç</a>
                         </div>
                     </div>
                 </div>
@@ -448,17 +444,16 @@
 
             $(".testimonial-text").height(maxHeight);
         });
-        
 
-        $(document).ready(function () {
-            var maxHeight = 0;
-            $(".footer-area").each(function () {
-                if ($(this).height() > maxHeight) {
-                    maxHeight = $(this).height();
-                }
-            });
 
-            $(".footer-area").height(maxHeight);
+        document.getElementById('whatsapp-link').addEventListener('click', function () {
+            var phoneNumber = document.getElementById('firm-number').textContent; 
+            var cleanedNumber = '90' + phoneNumber.replace(/\s/g, '');
+            var message = 'Merhaba';
+            console.log(cleanedNumber);
+            var whatsappURL = 'https://api.whatsapp.com/send?phone=' + cleanedNumber + '&text=' + encodeURIComponent(message);
+
+            window.open(whatsappURL, '_blank'); // Bağlantıyı yeni pencerede aç
         });
 
 
